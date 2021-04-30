@@ -266,3 +266,314 @@ The third and final subfolder we'll create is one to hold our JavaScript. Name t
 The final structure of the UFO repo folder containing an index.html file in the main folder, a static subfolder with css, images, and js subfolders, and style.css, app.js, and data.js files in their respective folders.
 
 Establishing this folder structure is a best practice when creating webpages with JavaScript. It's important to keep things organized when creating a webpage using JavaScript components, as there are even more moving pieces than a static website. We'll be linking to images and a style sheet as well as JavaScript scripts. The organization presented here provides clearly designated spots to store the code we'll be working on, making it easier to locate them as we go.
+
+# 11.2.3
+JavaScript Objects
+It's been a good day of research. Dana is far more familiar with some of the basic components of JavaScript: she now knows that variable declaration can actually occur three ways, and the array she is working with is similar to a Python dictionary. It's a great start, but Dana's still a little fuzzy on the array. It looks like a JSON, or a dictionary, so it's more complex than a simple list, right?
+
+Dana's intuition has served her well: the JavaScript array is indeed a bit more than a simple list. Let's take a closer look at JavaScript objects and how to interact with them, which will help us as we begin to create our code.
+Coding in JavaScript requires proficiency with JavaScript objects. And, in JavaScript, many different things can be considered an "object." We've actually already encountered one! Let's look at a snippet of code from ourdata.js array:
+
+var data = [
+  {
+    datetime: "1/1/2010",
+    city: "benton",
+    state: "ar",
+    country: "us",
+    shape: "circle",
+    durationMinutes: "5 mins.",
+    comments: "4 bright green circles high in the sky going in circles then one bright green light at my front door."
+  },
+As mentioned earlier, this looks very similar to a Python dictionary or something we'd find in a JSON file. In this code snippet, everything within the curly brackets is considered to be properties of a JavaScript object. The object is our variable: data.
+
+There are several ways we can access the properties, also called key-value pairs or objects, in the array.
+
+Also, objects are not limited to being contained within an array. In fact, an array itself is an object. Dates are also objects, as are functions; and Booleans can be objects. Basically, many things can be—or are—objects. We'll get plenty of practice with objects as we start to build our website.
+
+Before building the website, we should plan it out. By using a storyboard and mapping the elements out beforehand, it will be easier to assemble them later.
+
+# 11.2.4
+Storyboarding
+Dana has grown more familiar with JavaScript syntax and her basic code is gaining momentum. She's ready to start putting it to use!
+
+Dana's goal is to create an interactive webpage that allows readers to parse the data around UFO sightings. So, she essentially needs to build two things: the webpage that will allow users to view the data (HTML) and a dynamic table that will present it (JavaScript).
+
+Dana wants to storyboard her website to have an idea of what her readers will see when they view the final product. Storyboarding is incredibly useful in determining the layout of a webpage, so it's important to complete this step early in order to save time later. It's like building a house. You need to know how it's all going to fit together before you start building!
+
+Once the template has been created, Dana can begin to code the JavaScript portion by first importing the data and then referencing it with a variable.
+Typically, developers build HTML and JavaScript elements somewhat simultaneously because they complement each other. For example, the JavaScript table will be referenced within the HTML code, and different HTML components will be referenced within the JavaScript code. Because these files are so closely linked, Dana will switch between building the JavaScript table (within the app.js file) and the HTML page (within an index.html file).
+
+Dana also has a solid idea of how she wants her webpage to look, but it's easy to get lost in the details of building a webpage without a visual reference. A visual reference such as a storyboard will help Dana outline all of the elements she wants included, such as the article title, a summary, and the table itself. Then, when she begins creating JavaScript code to include the table, she'll know exactly which HTML components she'll be connecting to her table. Dana already knows she'll have several individual components on the webpage, shown below:
+
+Unordered components of a webpage, such as article title and paragraph and the page header.
+
+Now she just needs to figure out how to assemble them. This is where a storyboard comes in.
+
+Create a Storyboard
+A storyboard serves as a kind of blueprint for your site and helps with the transition from idea to finished product. Think of it as a map of the webpage.
+
+Storyboard of the website with components neatly organized.
+
+This step is key for a couple of reasons.
+
+First, knowing how we want the webpage to look before building it will save us time later. Second, it helps us make sure we've captured everything we want displayed. Sometimes, seeing the map of the website helps us ensure that all the elements we want displayed are included.
+
+We already know what components we want to use, such as a Jumbotron for the header, and the grid system for the filters and table. See the following image:
+
+Webpage storyboard with HTML and Bootstrap elements identified.
+
+We also have an idea of how many columns we want each table component to use.
+
+Table portion of storyboard with Bootstrap columns assigned.
+
+Now that a storyboard is in place, we can really get going! Let's align our code.
+
+Align the Code
+When we align our code, we're putting our plans into action, such as when we start transitioning our storyboard into a webpage. We'll start by building our components. The first one will be the table we generate with JavaScript. Open your app.js file with VS Code. The first thing we're going to do is import the data. This won't look like an import from Python. For starters, the double backslash ( // ) is how you comment your code in JavaScript.
+
+In your code editor, type the following to declare a variable, tableData, using const.
+
+// import the data from data.js
+const tableData = data;
+
+
+Next, we need to point our data to our HTML page. Specifically, we need to tell JavaScript what type of element the data will be displayed in. We already know that the data will be displayed in a table, so in our code editor we'll reference the tbody HTML tag using D3.
+
+IMPORTANT
+D3 is a JavaScript library that produces sophisticated and highly dynamic graphics in an HTML webpage. It is often used by data professionals to create dashboards, or a collection of visual data (such as graphs and maps), for presentation.
+
+Return to your code editor and type the following:
+
+// Reference the HTML table using d3
+var tbody = d3.select("tbody");
+With this code, we:
+
+Declare a variable, tbody
+Use d3.select to tell JavaScript to look for the <tbody> tags in the HTML
+Although we aren't building the HTML right now—we'll do this after we put together the code—we already know that the data will fit into that tag because it's a standard table tag that is used often in HTML, with or without JavaScript enhancements.
+
+# 11.3.1
+Getting Started with JavaScript Functions
+Dana has started to build her code, which is really exciting! When she imported the data, she took the first step in building her website. The next step is to build the table to sort and store the data.
+
+Dana knows that building this table will introduce a new level of complexity involving for loops and functions. Thankfully, JavaScript and Python have similar logic, so after Dana reviews and practices with code similar to what she'll use in her project, she'll be ready to start integrating it into her code.
+Functions in Python and JavaScript have similar logic: we provide the language with a set of instructions to follow, which can then be reused as needed. Watch the following video to learn more about JavaScript functions.
+
+
+
+In Python, a simple print statement looks like this:
+
+# Simple Python print statement
+def print_hello():
+    print("Hello there!")
+In this code, the function is declared with the keyword deffollowed by the name of the function, a set of parentheses, and a colon, with the indented code below.
+
+To write a print statement in JavaScript, we begin the same way: by declaring the function. To do this, we use the keyword function. (Note: Remember that the JavaScript syntax uses console.log instead of print.)
+
+// Simple JavaScript console.log statement
+function printHello();
+At this point, the process diverges from Python. The next step is to add a set of curly brackets, and then add the indented code between them.
+
+// Simple JavaScript console.log statement
+function printHello() {
+  console.log("Hello there!");
+}
+SKILL DRILL
+Return to the console tab of your DevTools and run the JavaScript function you just reviewed.
+
+Get more practice with Python and JavaScript functions in the following activity.
+
+
+
+Let's take a closer look at basic functions in JavaScript.
+
+# 11.3.2
+Simple JavaScript Functions
+Even though Python and JavaScript are logically similar, it's becoming more and more apparent to Dana that they have many syntactical differences. It's a lot to take in, so Dana wants more practice creating and calling functions. She wants to know if arguments are passed in the same way, as well as how functions are called.
+Arguments can be passed into both Python and JavaScript functions. Let's take a look at another Python function as an example. Look at the following code:
+
+# Takes two numbers and adds them
+def addition(a, b):
+    return a + b
+In this function, we've added the ability to input two numbers and add them. Let's convert this same function to JavaScript in the DevTools console. Type the following on a new line in your console:
+
+// Takes two numbers and adds them
+function addition(a, b) {
+  return a + b;
+}
+
+
+To test the new function, type console.log(addition(4, 5));. This is the equivalent of using a print statement in Python to print the function. Like Python, we can condense the code even further by typing only addition(4, 5); to execute the function as well.
+
+IMPORTANT
+In the "addition" function created above, the items within the parentheses are referred to as parameters. For example:
+
+function addition(a, b) { return a + b; }
+
+In this function, data points a and b are the parameters. Think of them as placeholders for the values we will add later, such as 4 and 5.
+
+Functions in JavaScript can have any number of parameters. However, from a practical standpoint, it's not a good idea to have more than two parameters per function. Too many arguments can significantly slow down and even crash your code.
+
+Now practice functions in the following Skill Drill.
+
+SKILL DRILL
+Practice executing the addition function in your console. Try switching up the numbers and printing it with and without the use of console.log();.
+
+Functions are a versatile tool in any coding language, and JavaScript is no different. Functions can also call other functions. The code below creates a new function that includes our simple function within it. In your console, type the doubleAddition function below:
+
+// Functions can call other functions
+function doubleAddition(c, d) {
+  var total = addition(c, d) * 2;
+  return total;
+}
+
+
+Let's run the new function, doubleAddition, with the same figures we used earlier: 4 and 5. Within this function, we're calling our original function (addition) and multiplying the sum of 4 and 5 by 2. We've assigned a variable to the function we've already created, so that we can print the total using a return statement.
+
+
+
+So far, we've created a function that performs simple addition and a second function that calls our original function, which is a great introduction to JavaScript functions.
+
+NOTE
+If the code and output in your console is getting cluttered, type clear() and press Enter to clear the working area of your console.
+
+Once cleared, you won't be able to see the code anymore, but you can still access what you've written by using the up arrow key on your keyboard. This allows you to cycle through the different lines of code you've already executed.
+
+Like functions in Python, JavaScript functions are very versatile and can incorporate many other actions, such as incorporating for loops, which we will explore shortly.
+
+First, let's explore one of the key improvements to JavaScript functions introduced by ES6: arrow functions.
+
+#11.3.3
+From Simple Functions to Arrow Functions
+Having been introduced to JavaScript functions, Dana is now feeling a bit more confident about her JavaScript coding skills. She's excited to explore a shortcut followed by JavaScript insiders: arrow functions, which JavaScript experts use to convert standard functions into a single line of code. That's right: a single line.
+
+Dana is excited about this insider trick because her collection of UFO data is somewhat extensive, and she has a feeling that her code will be complex. She also knows that arrow functions are one of the most popular aspects of the ES6 update, so she's eager to further integrate into the JavaScript community by mastering this function type.
+Functions in JavaScript can easily become bulky and difficult to understand. Thankfully, any standard function in JavaScript can be refactored into an arrow function. Arrow functions complete the same functions as regular functions, but they use a more compact and concise syntax that makes a code script shorter and easier to read. Watch the following video to learn more about arrow functions. 
+
+
+
+NOTE
+Arrow functions are also known as fat arrow functions because they are introduced with a "fat arrow": =>
+
+This type of function is very similar to how a Python lambda function is written.
+
+Let's take a look at a simple function.
+
+// Simple JavaScript log statement
+function printHello() {
+  return "Hello there!";
+}
+This function, while already fairly short and sweet, can be condensed even further. In the console, type the following code and then press Enter.
+
+printHello = () => "Hello there!";
+When the function is called, our statement will be printed to the console. This is a pretty big change from traditional JavaScript functions.
+
+
+
+Let's break down the differences in a bit more detail.
+
+The arrow function collapses the function from 3 lines to 1 line, which is a significant reduction in characters.
+The function keyword is not part of the arrow function. This is because the arrow symbol (=>) indicates that this block (or line) of code is a function.
+The return keyword and console.log() are removed because with this new syntax, JavaScript inherently knows what will be returned.
+Let's convert another function, this time with parameters. Here's the original function:
+
+// Original addition function
+function addition(a, b) {
+  return a + b;
+}
+In your code editor, type the following:
+
+// Converted to an arrow function
+addition = (a, b) => a + b;
+Once again, a multi-line function has been reduced to a single line. We have removed the function keyword, the curly brackets, and the return statement, and added a fat arrow to indicate that "addition" is a function. It's clear and easy to read—and it performs the same way as the original function!
+
+Now let's step it up one more time and convert the doubleAddition function, shown below.
+
+// Original doubleAddition function
+function doubleAddition(c, d) {
+  var total = addition(c, d) * 2;
+  return total;
+}
+Even this function can be refactored into a single line. Let's begin the process by following the standard syntax: the name of the function, an equals sign, and then the parameters.
+
+doubleAddition = (c, d)
+The next step in refactoring is to add the fat arrow followed by the argument. In this case, the argument is the second function.
+
+=> addition(c, d) * 2;
+SKILL DRILL
+Use the newly refactored doubleAddition function to find the total of 33 and 25.
+
+Familiarity with both types—traditional functions and arrow functions—is important. Both are used often in development, and by the time we're done with this project, we'll have used a combination of the two.
+
+Also, keep in mind that while arrow functions are clear and readable, there are still cases in which traditional functions are necessary. For example, when we want to place a function within another function, we would need to use a traditional function.
+
+# 11.4.2
+Practice Using for Loops in JavaScript
+It took a bit of work to build the code that iterates through an array, so Dana will create a few more to practice the for loop syntax.
+First, let's create a for loop to iterate through an array of vegetables. Here's our array:
+
+let vegetables = ["Carrots", "Peas", "Lettuce", "Tomatoes"];
+Now we're going to build the for loop. The syntax is exactly the same as it was earlier.
+
+for (var i = 0; i < vegetables.length; i++) {
+}
+We're using the keyword for to initiate the loop. We also start the loop at the beginning by assigning an iterable as zero with var i = 0;.
+
+Next, we tell the loop to continue working through the array as long as the iterable ("i") is less than the number of vegetables in our array: i < vegetables.length;.
+
+Finally, we increase our iterable by 1 by adding i++; which tells JavaScript to move to the next item in the array until there are no more items.
+
+Let's say we also want each item in the array to be printed to the console. To do this, we'll add a console.log statement inside the curly brackets. Let's add a message to go with each item, too, so it will read "I love [vegetable]" with each iteration.
+
+The final code looks like this:
+
+var vegetables = ["Carrots", "Peas", "Lettuce", "Tomatoes"];
+
+for (var i = 0; i < vegetables.length; i++) {
+    console.log("I love " + vegetables[i]);
+}
+Let's practice with one more. This time we'll loop through numbers without using an array.
+
+for (var i = 0; i < 5; i++) {
+   console.log("I am " + i);
+}
+The only difference between this loop and the previous one is that we aren't referring to an array. Instead, we are explicitly telling JavaScript to count up to a fifth value.
+
+# 11.5.1
+Introduction to Dynamic Tables
+Dana is making some headway. She's more familiar with objects and arrays, and she created a few functions, both traditional JavaScript functions and the faster arrow functions. Comparing and writing for loops was a bit challenging; logically, they work in the same manner as a Python for loop, but the code to create one in JavaScript is far more involved! Dana is realizing that becoming proficient in JavaScript requires a lot of practice and patience.
+
+Practice is progress, though, and Dana is now ready to create her table.
+Dana's code is somewhat modest right now, but it's about to get a lot more interesting. Now we're going to help her build the table to display all of the UFO sightings. We'll need to iterate through the array of objects in our data file and then append them to a table row. All of this will happen within a function, which makes the code self-contained.
+
+Creating self-contained code makes it easier to reuse the code and keeps us organized: the code in this function will be used to fill the table with data only.
+
+Let's get started by returning to our app.js file in the editor and, on a new line, creating a new function.
+
+Typically, functions are named after what they do. We're building a table, so we'll name the function "buildTable." We'll also pass in "data" as the argument. Remember that we used the variable "data" earlier to import our array of UFO sightings? This is the first step in actually working with the data.
+
+In our editor, we should have the start of a new function:
+
+function buildTable(data) {
+
+}
+We're using a standard JavaScript function instead of an arrow function because of what we'll be inserting inside the function (hint: another function!). Let's start building out the rest of the function.
+
+In the next line, we'll want to use code to clear existing data.
+
+
+
+Clearing the existing data creates a fresh table in which we can insert data. If we didn't clear existing data first, then we would find ourselves reinserting data that already exists, thus creating duplicates and making a bit of a mess. It's good practice to clear the existing data first to give ourselves a clean slate to work with.
+
+The line we'll use to clear the data is tbody.html("");. But how exactly is this code clearing data?
+
+tbody.html references the table, pointing JavaScript directly to the table in the HTML page we're going to build.
+The parentheses with empty quotes (("");) is an empty string.
+Basically, this entire line—tbody.html("");—tells JavaScript to use an empty string when creating the table; in other words, create a blank canvas. This is a standard way to clear data.
+
+Here is what our code looks like with the addition of this line:
+
+function buildTable(data) {
+  tbody.html("");
+}
+Now that we have the start of a clean table, let's apply the forEach function.
